@@ -27,6 +27,10 @@ class DatabaseSeeder extends Seeder
             ReturnStatusesSeeder::class,
             CartSeeder::class,
             OrderSeeder::class,
+            AttributeSeeder::class,
+            ProductAttributeSeeder::class,
+            AttributeValueSeeder::class,
+            ProductAttributeValueSeeder::class
         ]);
     }
 }
