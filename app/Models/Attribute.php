@@ -25,19 +25,19 @@ class Attribute extends Model
         'updated_at' => 'datetime'
     ];
 
-    public static $rules = [
+    public static array $rules = [
         'name' => 'required|string',
         'created_at' => 'nullable|date_format:Y-m-d H:i:s',
         'updated_at' => 'nullable|date_format:Y-m-d H:i:s'
     ];
 
-    public function productAttributes(): BelongsToMany
+    public function products(): BelongsToMany
     {
-        return $this->belongsToMany(ProductAttribute::class);
+        return $this->belongsToMany(Product::class, 'product_attributes');
     }
 
-    public function attributeValues(): BelongsToMany
+    public function values(): BelongsToMany
     {
-        return $this->belongsToMany(ProductAttribute::class);
+        return $this->belongsToMany(AttributeValue::class, 'attribute_values');
     }
 }

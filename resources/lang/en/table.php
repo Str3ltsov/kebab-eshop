@@ -22,6 +22,7 @@ return [
     'code' => 'Code',
     'count' => 'Count',
     'created_at' => 'Created At',
+    'updated_at' => 'Updated At',
     'date'=> 'Date',
     'description' => 'Description',
     'discountId' => 'Discount ID',
@@ -50,7 +51,6 @@ return [
     'subTotal' => 'Subtotal',
     'sum' => 'Sum',
     'userType' => 'User Type',
-    'updated_at' => 'Updated At',
     'used' => 'Used',
     'user' => 'User',
     'users' => 'Users',
@@ -59,5 +59,10 @@ return [
     'value' => 'Value',
     'video' => 'Video',
     'visible' => 'Visible',
-
+    'attributes' => 'Attributes',
+    'valueName' => 'Value Name',
+    'attributeName' => 'Attribute Name',
+    'attributeValues' => 'Attribute Values',
+    'extraPrice' => 'Extra Price',
+    'available' => 'Available'
 ];

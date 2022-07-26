@@ -33,7 +33,7 @@ class ProductAttributeValue extends Model
     public static array $rules = [
         'product_id' => 'required|integer',
         'attribute_value_id' => 'required|integer',
-        'extra_price' => 'required|nullable',
+        'extra_price' => 'nullable|numeric',
         'available' => 'required|boolean',
         'created_at' => 'nullable|date_format:Y-m-d H:i:s',
         'updated_at' => 'nullable|date_format:Y-m-d H:i:s'

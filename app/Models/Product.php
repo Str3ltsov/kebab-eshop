@@ -84,14 +84,9 @@ class Product extends Model implements TranslatableContract
         return $this->belongsTo(Discount::class);
     }
 
-    public function productAttributes(): BelongsToMany
+    public function attributes(): BelongsToMany
     {
-        return $this->belongsToMany(ProductAttribute::class);
-    }
-
-    public function productAttributeValues(): BelongsToMany
-    {
-        return $this->belongsToMany(ProductAttributeValue::class);
+        return $this->belongsToMany(Attribute::class, 'product_attributes');
     }
 
     public function scopePriceFrom(Builder $query, $price) : Builder

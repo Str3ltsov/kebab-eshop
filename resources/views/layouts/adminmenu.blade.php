@@ -12,6 +12,8 @@
 <li><a class="dropdown-item" href="/admin/returns">{{__('menu.returns')}}</a>&nbsp;&nbsp;</li>
 <li><a class="dropdown-item" href="/admin/returnStatuses">{{__('menu.returnStatuses')}}</a>&nbsp;&nbsp;</li>
 <li><a class="dropdown-item" href="/admin/promotions">{{__('menu.promotions')}}</a>&nbsp;&nbsp;</li>
+<li><a class="dropdown-item" href="/admin/attributes">{{__('menu.attributes')}}</a>&nbsp;&nbsp;</li>
+<li><a class="dropdown-item" href="/admin/attribute_values">{{__('menu.attributeValues')}}</a>&nbsp;&nbsp;</li>
 <li><a class="dropdown-item" href="/admin/customers">{{__('menu.users')}}</a>&nbsp;</li>
 <li><a class="dropdown-item" href="/admin/messenger">{{__('menu.messenger')}}</a>&nbsp;</li>
 <li><a class="dropdown-item" href="/admin/cookies">{{__('menu.cookies')}}</a>&nbsp;&nbsp;</li>

@@ -40,8 +40,8 @@ class AttributeValue extends Model
         return $this->hasOne(Attribute::class, 'id', 'attribute_id');
     }
 
-    public function productAttributeValues(): BelongsToMany
+    public function products(): BelongsToMany
     {
-        return $this->belongsToMany(ProductAttributeValue::class);
+        return $this->belongsToMany(Product::class, 'product_attribute_values');
     }
 }

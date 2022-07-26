@@ -145,7 +145,6 @@ return [
     'invoice' => 'Invoice',
     'invoicePreview' => 'Invoice Preview',
 
-
     // Products
     'createProduct' => 'Create Product',
     'editProduct' => 'Edit Product',
@@ -155,6 +154,14 @@ return [
     'productName' => 'Product Name',
     'productOrders' => 'Product Orders',
     'noProducts' => 'No Products',
+
+    //Product Attribute Values
+    'productAttributeValues' => 'Product Attribute Values',
+    'noProductAttributes' => 'No Product Attributes',
+    'noProductAttributeValues' => 'No Product Attribute Values',
+    'createProductAttributeValue' => 'Create Product Attribute Value',
+    'noAttributeValues' => 'No Attribute Values',
+    'editProductAttributeValues' => 'Edit Product Attribute Values',
 
     //Promotions
     'createPromotion' => 'Create Promotion',
@@ -173,7 +180,6 @@ return [
     'to' => 'To',
     'sum' => 'Sum',
     'total' => 'Total',
-
 
     //Rating
     'alreadyVoted' => "You have already voted for this product",
@@ -199,6 +205,16 @@ return [
     'returnStatuses' => 'Return Statuses',
     'returnStatusDetails'=> 'Return Status Details',
     'noReturns' => 'You have no returns',
+
+    //Attributes
+    'attributes' => 'Attributes',
+    'createAttribute' => 'Create Attribute',
+    'editAttribute' => 'Edit Attribute',
+
+    //Attribute Values
+    'attributeValues' => 'Attribute Values',
+    'createAttributeValue' => 'Create Attribute Value',
+    'editAttributeValue' => 'Edit Attribute Value',
 
     //User
     'customers' => 'Customers',

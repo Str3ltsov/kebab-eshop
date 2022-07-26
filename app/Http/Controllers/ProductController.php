@@ -5,16 +5,18 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use App\Models\ProductAttribute;
+use App\Models\ProductAttributeValue;
 use App\Models\Ratings;
 use App\Repositories\CategoryRepository;
 use App\Repositories\ProductRepository;
-use Flash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Response;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Spatie\QueryBuilder\QueryBuilder;
 use Spatie\QueryBuilder\AllowedFilter;
+use Response;
+use Flash;
 
 class ProductController extends AppBaseController
 {
@@ -93,13 +95,13 @@ class ProductController extends AppBaseController
      */
     public function create()
     {
-        return view('products.create',
-        [ 'visible_list' => $this->visible_list,
-          'categories' => $this->categoriesForSelector(),
-          'promotions' => $this->promotionForSelector(),
-          'discounts' => $this->discountForSelector(),
-        ]
-        );
+        return view('products.create', [
+            'visible_list' => $this->visible_list,
+            'categories' => $this->categoriesForSelector(),
+            'promotions' => $this->promotionForSelector(),
+            'discounts' => $this->discountForSelector(),
+            'attributes' => $this->attributeForSelector()
+        ]);
     }
 
     /**
@@ -119,12 +121,15 @@ class ProductController extends AppBaseController
 //            dd( $path);
             $input['image'] = "/images/upload/" .$imageName;
         }
-        $input = $this->prepare($input, ["name", "description"]);
 
+        $input = $this->prepare($input, ["name", "description"]);
 //        $product = $this->productRepository->create($input);
         $product = Product::create($input);
-        if ( !empty($input['categories'] ) )
+
+        if (!empty($input['categories']) )
             $this->saveCategories($input['categories'], $product->id);
+        if (!empty($input['attributes']) )
+            $this->saveAttributes($input['attributes'], $product->id);
 
         Flash::success('Product saved successfully.');
 
@@ -235,15 +240,14 @@ class ProductController extends AppBaseController
             return redirect(route('products.index'));
         }
 
-        return view('products.edit')->with(
-            [
+        return view('products.edit')->with([
                 'product' => $product,
                 'visible_list' => $this->visible_list,
                 'categories' => $this->categoriesForSelector(),
                 'promotions' => $this->promotionForSelector(),
                 'discounts' => $this->discountForSelector(),
-            ]
-            );
+                'attributes' => $this->attributeForSelector()
+            ]);
     }
 
     /**
@@ -263,25 +267,64 @@ class ProductController extends AppBaseController
 
             return redirect(route('products.index'));
         }
+
         $input = $request->all();
 //        $product = $this->productRepository->update($request->all(), $id);
         $input = $this->prepare($input, ["name", "description"]);
         $product->update($input);
-        if ($input['categories'] != null)
-            $this->saveCategories($input['categories'], $product->id);
+
+        $this->deleteCategories($product->id);
+        if (array_key_exists('categories', $input)) {
+            if ($input['categories'] != null) {
+                $this->deleteCategories($product->id);
+                $this->saveCategories($input['categories'], $product->id);
+            }
+        }
+
+        $this->deleteAttributes($product->id);
+        if (array_key_exists('attributes', $input)) {
+            if ($input['attributes'] != null) {
+                $this->deleteAttributes($product->id);
+                $this->saveAttributes($input['attributes'], $product->id);
+            }
+        }
+
         Flash::success('Product updated successfully.');
 
         return redirect(route('products.index'));
     }
 
-
-    public function saveCategories( $cats, $prod_id)  {
-        foreach ($cats as $cat ){
+    public function saveCategories($categories, $productId) {
+        foreach ($categories as $category) {
             DB::table('category_product')->insert([
-                'category_id' => $cat,
-                'product_id' => $prod_id,
+                'category_id' => $category,
+                'product_id' => $productId,
             ]);
         }
+    }
+
+    public function deleteCategories($productId)
+    {
+        DB::table('category_product')
+            ->where('product_id', $productId)
+            ->delete();
+    }
+
+    public function saveAttributes($attributes, $productId)
+    {
+        foreach ($attributes as $attribute) {
+            ProductAttribute::create([
+                'attribute_id' => $attribute,
+                'product_id' => $productId
+            ]);
+        }
+    }
+
+    public function deleteAttributes($productId)
+    {
+        ProductAttribute::select('*')
+            ->where('product_id', $productId)
+            ->delete();
     }
 
     /**
