@@ -30,9 +30,7 @@ class AttributeValue extends Model
 
     public static array $rules = [
         'value_name' => 'required|string',
-        'attribute_id' => 'required|integer',
-        'created_at' => 'nullable|date_format:Y-m-d H:i:s',
-        'updated_at' => 'nullable|date_format:Y-m-d H:i:s'
+        'attribute_id' => 'required|integer'
     ];
 
     public function attribute(): HasOne

@@ -26,9 +26,7 @@ class Attribute extends Model
     ];
 
     public static array $rules = [
-        'name' => 'required|string',
-        'created_at' => 'nullable|date_format:Y-m-d H:i:s',
-        'updated_at' => 'nullable|date_format:Y-m-d H:i:s'
+        'name' => 'required|string'
     ];
 
     public function products(): BelongsToMany

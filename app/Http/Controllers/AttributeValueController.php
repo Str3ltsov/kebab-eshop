@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateAttributeValueRequest;
 use App\Services\AttributeValueService;
 use App\Services\IAttributeValueService;
 use Error;
-use Exception;
 
 class AttributeValueController extends AppBaseController
 {
@@ -31,9 +30,6 @@ class AttributeValueController extends AppBaseController
         catch (Error $error) {
             return back()->with('error', $error->getMessage());
         }
-        catch (Exception $exception) {
-            return back()->with('error', $exception->getMessage());
-        }
     }
 
     public function create()
@@ -54,9 +50,6 @@ class AttributeValueController extends AppBaseController
         catch (Error $error) {
             return back()->with('error', $error->getMessage());
         }
-        catch (Exception $exception) {
-            return back()->with('error', $exception->getMessage());
-        }
     }
 
     public function edit($id)
@@ -72,9 +65,6 @@ class AttributeValueController extends AppBaseController
         }
         catch (Error $error) {
             return back()->with('error', $error->getMessage());
-        }
-        catch (Exception $exception) {
-            return back()->with('error', $exception->getMessage());
         }
     }
 
@@ -92,9 +82,6 @@ class AttributeValueController extends AppBaseController
         catch (Error $error) {
             return back()->with('error', $error->getMessage());
         }
-        catch (Exception $exception) {
-            return back()->with('error', $exception->getMessage());
-        }
     }
 
     public function destroy($id)
@@ -110,9 +97,6 @@ class AttributeValueController extends AppBaseController
         }
         catch (Error $error) {
             return back()->with('error', $error->getMessage());
-        }
-        catch (Exception $exception) {
-            return back()->with('error', $exception->getMessage());
         }
     }
 }
