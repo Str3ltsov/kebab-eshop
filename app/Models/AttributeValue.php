@@ -30,9 +30,7 @@ class AttributeValue extends Model
 
     public static array $rules = [
         'value_name' => 'required|string',
-        'attribute_id' => 'required|integer',
-        'created_at' => 'nullable|date_format:Y-m-d H:i:s',
-        'updated_at' => 'nullable|date_format:Y-m-d H:i:s'
+        'attribute_id' => 'required|integer'
     ];
 
     public function attribute(): HasOne
@@ -40,8 +38,8 @@ class AttributeValue extends Model
         return $this->hasOne(Attribute::class, 'id', 'attribute_id');
     }
 
-    public function productAttributeValues(): BelongsToMany
+    public function products(): BelongsToMany
     {
-        return $this->belongsToMany(ProductAttributeValue::class);
+        return $this->belongsToMany(Product::class, 'product_attribute_values');
     }
 }

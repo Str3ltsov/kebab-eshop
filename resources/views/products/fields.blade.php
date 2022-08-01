@@ -36,7 +36,6 @@
     {!! Form::number('count', null, ['class' => 'form-control']) !!}
 </div>
 
-
 <!-- Image Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('image',__('table.image').':') !!}
@@ -48,7 +47,6 @@
     </div>
 </div>
 <div class="clearfix"></div>
-
 
 <!-- Video Field -->
 <div class="form-group col-sm-6">
@@ -62,13 +60,11 @@
     {!! Form::select('visible', $visible_list, null, ['class' => 'form-control custom-select']) !!}
 </div>
 
-
 <!-- Promotion Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('promotion_id', __('table.promotionId').':') !!}
     {!! Form::select('promotion_id', $promotions, null, ['class' => 'form-control custom-select']) !!}
 </div>
-
 
 <!-- Discount Id Field -->
 <div class="form-group col-sm-6">
@@ -76,9 +72,14 @@
     {!! Form::select('discount_id', $discounts, null, ['class' => 'form-control custom-select']) !!}
 </div>
 
-
 <!-- Discount Id Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('categories', __('table.categories').':') !!}
     {!! Form::select('categories[]', $categories, null, ['class' => 'form-control custom-select', 'multiple'=>'multiple','name'=>'categories[]']) !!}
+</div>
+
+<!-- Discount Id Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('attributes', __('table.attributes').':') !!}
+    {!! Form::select('attributes[]', $attributes, null, ['class' => 'form-control custom-select', 'multiple'=>'multiple', 'name'=>'attributes[]']) !!}
 </div>

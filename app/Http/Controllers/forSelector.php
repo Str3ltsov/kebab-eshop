@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Attribute;
 use App\Models\Cart;
 use App\Models\CartStatus;
 use App\Models\Category;
@@ -144,4 +145,14 @@ trait forSelector
 
     }
 
+    public function attributeForSelector(): array
+    {
+        $c = array();
+
+        Attribute::all()->map(function ($item) use (&$c) {
+            $c[$item->id] = $item->name;
+        });
+
+        return $c;
+    }
 }

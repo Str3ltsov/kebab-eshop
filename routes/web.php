@@ -19,6 +19,10 @@ use App\Http\Controllers\UsersReportController;
 use App\Http\Controllers\UserActivitiesReportController;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\DataExportImportController;
+use App\Http\Controllers\AttributeController;
+use App\Http\Controllers\AttributeValueController;
+use App\Http\Controllers\ProductAttributeValueController;
+
 use App\Http\Livewire\MessengerIndex;
 use App\Http\Livewire\MessengerAdd;
 use App\Http\Livewire\MessengerShow;
@@ -134,6 +138,16 @@ Route::group(array('prefix' => 'admin', 'middleware' => 'admin'), function () {
     Route::get('data_export_import', [DataExportImportController::class, 'index'])->name('data_export_import.index');
     Route::get('data_export_import/export', [DataExportImportController::class, 'export'])->name('data_export_import.export');
     Route::post('data_export_import/import', [DataExportImportController::class, 'import'])->name('data_export_import.import');
+
+    Route::resource('attributes', AttributeController::class)->except('show');
+    Route::resource('attribute_values', AttributeValueController::class)->except('show');
+
+    Route::get('products/{id}/attribute_values', [ProductAttributeValueController::class, 'index'])->name('attributeValues');
+    Route::get('products/{id}/attribute_values/create', [ProductAttributeValueController::class, 'create'])->name('createAttributeValues');
+    Route::post('products/{id}/attribute_values/create', [ProductAttributeValueController::class, 'store'])->name('storeAttributeValues');
+    Route::get('products/{id}/attribute_values/{attributeValueId}/edit', [ProductAttributeValueController::class, 'edit'])->name('editAttributeValues');
+    Route::patch('products/{id}/attribute_values/{attributeValueId}/edit', [ProductAttributeValueController::class, 'update'])->name('updateAttributeValues');
+    Route::delete('products/{id}/attribute_values/{attributeValueId}', [ProductAttributeValueController::class, 'destroy'])->name('destroyAttributeValues');
 });
 
     Route::group(array('prefix' => 'user', 'middleware' => ['auth', 'cookie-consent']), function () {

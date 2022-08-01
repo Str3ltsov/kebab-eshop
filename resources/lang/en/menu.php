@@ -34,6 +34,8 @@ return [
     'returns' => 'Returns',
     'returnsReport' => 'Returns Report',
     'returnStatuses' => 'Return Statuses',
+    'attributes' => 'Attributes',
+    'attributeValues' => 'Attribute Values',
     'users'=> 'Users',
     'userInfo'=> 'User Info',
     'usersReport' => 'Users Report',
